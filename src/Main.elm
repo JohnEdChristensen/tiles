@@ -1,16 +1,20 @@
--- Input a user name and password. Make sure the password matches.
---
--- Read how it works:
---   https://guide.elm-lang.org/architecture/forms.html
+-- play with tiles
 --
 
 
-module Main exposing (Model, Msg(..), init, main, update, view, viewInput, viewValidation)
+module Main exposing (..)
 
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (onInput)
+import Color as SvgC
+import Element exposing (..)
+import Element.Background as Background
+import Element.Events exposing (..)
+import TypedSvg exposing (polygon, svg)
+import TypedSvg.Attributes as SvgA
+import TypedSvg.Core exposing (Svg)
+import TypedSvg.Filters as SvgF
+import TypedSvg.Filters.Attributes as SvgFA
+import TypedSvg.Types as SvgT
 
 
 
@@ -19,7 +23,12 @@ import Html.Events exposing (onInput)
 
 main : Program () Model Msg
 main =
-    Browser.sandbox { init = init, update = update, view = view }
+    Browser.document
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
 
 
 
@@ -27,223 +36,248 @@ main =
 
 
 type alias Model =
-    { name : String
-    , password : String
-    , passwordAgain : String
+    { x : Int
     }
 
 
-init : Model
-init =
-    Model "" "" ""
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( Model 1
+    , Cmd.none
+    )
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.none
 
 
 
 -- UPDATE
--- one update message for each out our model fields
 
 
 type Msg
-    = Name String
-    | Password String
-    | PasswordAgain String
+    = Default
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        -- record update syntax
-        -- say "model where name is newName"
-        -- say "model where field is value"
-        Name newName ->
-            { model | name = newName }
-
-        Password password ->
-            { model | password = password }
-
-        PasswordAgain password ->
-            { model | passwordAgain = password }
+        Default ->
+            ( model, Cmd.none )
 
 
 
 -- VIEW
+-- -- #e67e80
+-- red =
+--     Element.rgb255 230 126 128
 
 
-view : Model -> Html Msg
-view model =
-    div []
-        [ viewInput "text" "Name" model.name Name
-        , viewInput "password" "Password" model.password Password
-        , viewInput "password" "Re-enter Password" model.passwordAgain PasswordAgain
-        , viewValidation model
+view : Model -> Browser.Document Msg
+view _ =
+    let
+        -- #fdf6e3
+        backgroundColor =
+            Element.rgb255 253 246 227
+    in
+    { title = "Tiles"
+    , body =
+        [ Element.layout
+            [ Element.width Element.fill
+            , Element.height Element.fill
+            , Background.color backgroundColor
+            ]
+          <|
+            html <|
+                svg
+                    (fullscreenSvgBox 50 150)
+                    [ TypedSvg.defs []
+                        [ nullFilter
+                        , tileClipPaths
+                        ]
+                    , TypedSvg.g
+                        [ nullFilterStyle ]
+                        tilesSvg
+                    ]
+        ]
+    }
+
+
+tilesSvg : List (Svg msg)
+tilesSvg =
+    [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 30 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 60 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 90 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 120 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 150 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 180 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 210 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 240 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 270 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 300 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 330 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 60 (-60 / 2) 10.0 ( 10, 0 ) SvgC.yellow
+    , parallelogramSvg 45 0 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 45 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 90 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 135 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 180 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 225 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 270 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 315 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 60 0 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 60 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 120 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 180 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 240 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 300 10.0 ( 0, -50 ) SvgC.blue
+    ]
+
+
+
+-- SVG Configuration
+--
+-- The parent SVG takes up the whole screen, and uses viewBox
+-- to specify the coordiantes
+-- https://ellie-app.com/cp8m289xjgQa1
+
+
+fullscreenSvgBox : Float -> Float -> List (TypedSvg.Core.Attribute Msg)
+fullscreenSvgBox width height =
+    let
+        offsetX =
+            -width / 2
+
+        offsetY =
+            -height / 2
+    in
+    [ SvgA.width (SvgT.percent 100)
+    , SvgA.height (SvgT.percent 100)
+    , SvgA.viewBox offsetX offsetY width height
+    ]
+
+
+nullFilter : Svg msg
+nullFilter =
+    TypedSvg.filter
+        [ SvgA.id "nullFilter" ]
+        [ SvgF.blend
+            [ SvgFA.in_ SvgT.InSourceGraphic
+            , SvgFA.mode SvgT.ModeNormal -- https://stackoverflow.com/questions/47451435/svg-prevent-transparent-gaps-between-adjacent-polygons
+            ]
+            []
         ]
 
 
-viewInput : String -> String -> String -> (String -> msg) -> Html msg
-viewInput t p v toMsg =
-    input [ type_ t, placeholder p, value v, onInput toMsg ] []
+nullFilterStyle : TypedSvg.Core.Attribute msg
+nullFilterStyle =
+    SvgA.style "filter: url(#nullFilter)"
+
+
+tileClipPaths : Svg msg
+tileClipPaths =
+    TypedSvg.defs []
+        [ TypedSvg.clipPath [ SvgA.id <| "myClipPath30" ]
+            [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        , TypedSvg.clipPath [ SvgA.id <| "myClipPath45" ]
+            [ parallelogramSvg 45 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        , TypedSvg.clipPath [ SvgA.id <| "myClipPath60" ]
+            [ parallelogramSvg 60 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        ]
 
 
 
---attempt 1
-{- viewValidation : Model -> Html msg
-   viewValidation model =
-       if model.password == model.passwordAgain then
-           if String.length model.password >= 8 then
-               if String.any isUpper model.password then
-                   if String.any isLower model.password then
-                       div [ style "color" "green" ] [ text "OK" ]
-
-                   else
-                       div [ style "color" "red" ] [ text "needs at least 1 lower!" ]
-
-               else
-                   div [ style "color" "red" ] [ text "needs at least 1 upper!" ]
-
-           else
-               div [ style "color" "red" ] [ text "Password must be at least 8 chars!" ]
-
-       else
-           div [ style "color" "red" ] [ text "Passwords do not match!" ]
--}
---attempt 2, don't nest if else, more readable
-{- viewValidation : Model -> Html msg
-   viewValidation model =
-       if not (model.password == model.passwordAgain) then
-           div [ style "color" "red" ] [ text "Passwords do not match!" ]
-
-       else if not (String.length model.password >= 8) then
-           div [ style "color" "red" ] [ text "Password must be at least 8 chars!" ]
-
-       else if not (String.any isUpper model.password) then
-           div [ style "color" "red" ] [ text "needs at least 1 upper!" ]
-
-       else if not (String.any isLower model.password) then
-           div [ style "color" "red" ] [ text "needs at least 1 lower!" ]
-
-       else
-           div [ style "color" "green" ] [ text "OK" ]
-
--}
---attempt 3 too large of a tuple
--- viewValidation : Model -> Html msg
--- viewValidation model =
---     case ( model.password == model.passwordAgain, String.length model.password >= 8, String.any Char.isUpper model.password, String.any Char.iusLower model.password ) of
---         ( False, _, _, _ ) ->
---             div [ style "color" "red" ] [ text "Passwords do not match!" ]
---
---         ( True, False, _, _ ) ->
---             div [ style "color" "red" ] [ text "Password must be at least 8 chars!" ]
---
---         ( True, True, False, _ ) ->
---             div [ style "color" "red" ] [ text "needs at least 1 upper!" ]
---
---         ( True, True, True, False ) ->
---             div [ style "color" "red" ] [ text "needs at least 1 lower!" ]
---
---         ( True, True, True, True ) ->
---             div [ style "color" "green" ] [ text "OK" ]
---attempt 4
+-- Geometry
 
 
-type ValidationResult
-    = Valid
-    | Invalid (List String)
+type alias Radians =
+    Float
 
 
-passwordsMatch : String -> String -> Bool
-passwordsMatch password passwordAgain =
-    password == passwordAgain
+type alias Degrees =
+    Float
 
 
-passwordLongEnough : String -> Bool
-passwordLongEnough password =
-    String.length password >= 8
+degreesToRadians : Degrees -> Radians
+degreesToRadians degrees =
+    degrees * (pi / 180)
 
 
-containsUpper : String -> Bool
-containsUpper password =
-    String.any Char.isUpper password
+type alias Point =
+    ( Float, Float )
 
 
-containsLower : String -> Bool
-containsLower password =
-    String.any Char.isLower password
+addPoints : Point -> Point -> Point
+addPoints ( x1, y1 ) ( x2, y2 ) =
+    ( x1 + x2, y1 + y2 )
 
 
-validatePassword : Model -> ValidationResult
-validatePassword model =
+type alias Quad =
+    List Point
+
+
+parallelogramVerts : Radians -> Float -> Quad
+parallelogramVerts angle length =
     let
-        errors =
-            [ if not (passwordsMatch model.password model.passwordAgain) then
-                Just "Passwords do not match!"
+        --    c_______d
+        --    /      /
+        --   /      /
+        --  /______/
+        -- a       b
+        a =
+            ( 0, 0 )
 
-              else
-                Nothing
-            , if not (passwordLongEnough model.password) then
-                Just "Password must be at least 8 characters long."
+        b =
+            ( length, 0 )
 
-              else
-                Nothing
-            , if not (containsUpper model.password) then
-                Just "Password must contain at least 1 uppercase"
+        c =
+            ( length * cos angle, length * sin angle )
 
-              else
-                Nothing
-            , if not (containsLower model.password) then
-                Just "Password must contain at least 1 lowercase"
-
-              else
-                Nothing
-
-            -- Add other checks here
-            ]
+        -- Adding vector AC to AB to get D
+        d =
+            addPoints b c
     in
-    case List.filterMap identity errors of
-        [] ->
-            Valid
-
-        errs ->
-            Invalid errs
+    [ a, b, d, c ]
 
 
-viewValidation : Model -> Html msg
-viewValidation model =
-    case validatePassword model of
-        Valid ->
-            div
-                [ style "background" "lime"
-                , style "width" "fit-content"
-                ]
-                [ viewMessage "green" "OK" ]
 
-        Invalid reasons ->
-            div
-                [ style "background" "pink"
-                , style "width" "fit-content"
-                ]
-                (List.map (viewMessage "red") reasons)
+-- Geometry -> SVG
 
 
-viewMessage : String -> String -> Html abc
-viewMessage color message =
-    div [ style "color" color ] [ text message ]
+clipPath : Degrees -> String
+clipPath angleDegrees =
+    "myClipPath" ++ String.fromFloat angleDegrees
 
--- validatePassword : Model -> ValidationResult
--- validatePassword model =
---     let
---         errors =
---             [ if not (passwordsMatch model.password model.passwordAgain) then
---                 Just "Passwords do not match!"
---               else
---                 Nothing
---             , if not (passwordLongEnough model.password) then
---                 Just "Password must be at least 8 characters long."
---               else
---                 Nothing
---             -- Add other checks here
---             ]
---     in
---     case List.filterMap identity errors of
---         [] -> Valid
---         errs -> Invalid errs
+
+parallelogramSvg : Float -> Float -> Float -> Point -> SvgC.Color -> Svg msg
+parallelogramSvg angleDegrees shapeRotationDegrees length ( coordX, coordY ) color =
+    let
+        angleRadians =
+            degreesToRadians angleDegrees
+
+        -- Calculate vertices
+        quad =
+            parallelogramVerts angleRadians length
+    in
+    polygon
+        [ SvgA.points quad
+        , SvgA.fill (SvgT.Paint color)
+        , SvgA.stroke <| SvgT.Paint SvgC.black
+        , SvgA.strokeWidth <| SvgT.pt 0.2
+        , SvgA.style <|
+            "paint-order:fill;"
+                ++ " clip-path: url(#"
+                ++ clipPath angleDegrees
+                ++ ")"
+        , SvgA.transform
+            [ SvgT.Translate coordX coordY
+            , SvgT.Rotate shapeRotationDegrees 0 0
+            ]
+        ]
+        []
