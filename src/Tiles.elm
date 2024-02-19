@@ -133,7 +133,7 @@ view model =
                     (svg
                         [ SvgA.width (SvgT.percent 100) --https://ellie-app.com/cp8m289xjgQa1
                         , SvgA.height (SvgT.percent 100)
-                        , SvgA.viewBox -50 -50 100 100
+                        , SvgA.viewBox -100 -100 200 200
 
                         --, SvgA.shapeRendering SvgT.RenderCrispEdges
                         ]
@@ -261,5 +261,9 @@ parallelogramSvg angleDegrees shapeRotationDegrees length ( coordX, coordY ) col
         , SvgA.stroke <| SvgT.Paint SvgC.black
         , SvgA.strokeWidth <| SvgT.pt 0.2
         , SvgA.style <| "paint-order:fill;" ++ " clip-path: url(#" ++ clipPath ++ ")"
+        , SvgA.transform
+            [ SvgT.Translate coordX coordY
+            , SvgT.Rotate shapeRotationDegrees 0 0
+            ]
         ]
         []
