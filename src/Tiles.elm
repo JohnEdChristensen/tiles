@@ -14,7 +14,7 @@ import Element.Background as Background
 import Element.Events exposing (..)
 import Random
 import Time
-import TypedSvg exposing (circle, polygon, rect, svg)
+import TypedSvg exposing (polygon, svg)
 import TypedSvg.Attributes as SvgA
 import TypedSvg.Core exposing (Svg)
 import TypedSvg.Filters as SvgF
@@ -139,53 +139,39 @@ view model =
                         ]
                         [ TypedSvg.defs
                             []
-                            [ TypedSvg.filter
-                                [ SvgA.id "myFilter" ]
-                                [ SvgF.blend
-                                    [ SvgFA.in_ SvgT.InSourceGraphic
-                                    , SvgFA.mode SvgT.ModeNormal -- https://stackoverflow.com/questions/47451435/svg-prevent-transparent-gaps-between-adjacent-polygons
-                                    ]
-                                    []
-                                ]
+                            [ nullFilter
+                            , clipPaths
                             ]
                         , TypedSvg.g
                             [ SvgA.style <| "filter: url(#myFilter)"
                             ]
-                            [ TypedSvg.defs []
-                                [ TypedSvg.clipPath [ SvgA.id <| "myClipPath30" ]
-                                    [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red "1" ]
-                                , TypedSvg.clipPath [ SvgA.id <| "myClipPath45" ]
-                                    [ parallelogramSvg 45 0 10.0 ( 0, 0 ) SvgC.red "1" ]
-                                , TypedSvg.clipPath [ SvgA.id <| "myClipPath60" ]
-                                    [ parallelogramSvg 60 0 10.0 ( 0, 0 ) SvgC.red "1" ]
-                                ]
-                            , parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red "1"
-                            , parallelogramSvg 30 30 10.0 ( 0, 0 ) SvgC.red "2"
-                            , parallelogramSvg 30 60 10.0 ( 0, 0 ) SvgC.red "3"
-                            , parallelogramSvg 30 90 10.0 ( 0, 0 ) SvgC.red "4"
-                            , parallelogramSvg 30 120 10.0 ( 0, 0 ) SvgC.red "5"
-                            , parallelogramSvg 30 150 10.0 ( 0, 0 ) SvgC.red "6"
-                            , parallelogramSvg 30 180 10.0 ( 0, 0 ) SvgC.red "7"
-                            , parallelogramSvg 30 210 10.0 ( 0, 0 ) SvgC.red "8"
-                            , parallelogramSvg 30 240 10.0 ( 0, 0 ) SvgC.red "9"
-                            , parallelogramSvg 30 270 10.0 ( 0, 0 ) SvgC.red "10"
-                            , parallelogramSvg 30 300 10.0 ( 0, 0 ) SvgC.red "11"
-                            , parallelogramSvg 30 330 10.0 ( 0, 0 ) SvgC.red "12"
-                            , parallelogramSvg 60 (-60 / 2) 10.0 ( 10, 0 ) SvgC.yellow "13"
-                            , parallelogramSvg 45 0 10.0 ( 0, 50 ) SvgC.yellow "14"
-                            , parallelogramSvg 45 45 10.0 ( 0, 50 ) SvgC.yellow "15"
-                            , parallelogramSvg 45 90 10.0 ( 0, 50 ) SvgC.yellow "16"
-                            , parallelogramSvg 45 135 10.0 ( 0, 50 ) SvgC.yellow "17"
-                            , parallelogramSvg 45 180 10.0 ( 0, 50 ) SvgC.yellow "18"
-                            , parallelogramSvg 45 225 10.0 ( 0, 50 ) SvgC.yellow "19"
-                            , parallelogramSvg 45 270 10.0 ( 0, 50 ) SvgC.yellow "20"
-                            , parallelogramSvg 45 315 10.0 ( 0, 50 ) SvgC.yellow "21"
-                            , parallelogramSvg 60 0 10.0 ( 0, -50 ) SvgC.blue "22"
-                            , parallelogramSvg 60 60 10.0 ( 0, -50 ) SvgC.blue "23"
-                            , parallelogramSvg 60 120 10.0 ( 0, -50 ) SvgC.blue "24"
-                            , parallelogramSvg 60 180 10.0 ( 0, -50 ) SvgC.blue "25"
-                            , parallelogramSvg 60 240 10.0 ( 0, -50 ) SvgC.blue "26"
-                            , parallelogramSvg 60 300 10.0 ( 0, -50 ) SvgC.blue "27"
+                            [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 30 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 60 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 90 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 120 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 150 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 180 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 210 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 240 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 270 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 300 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 30 330 10.0 ( 0, 0 ) SvgC.red
+                            , parallelogramSvg 60 (-60 / 2) 10.0 ( 10, 0 ) SvgC.yellow
+                            , parallelogramSvg 45 0 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 45 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 90 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 135 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 180 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 225 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 270 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 45 315 10.0 ( 0, 50 ) SvgC.yellow
+                            , parallelogramSvg 60 0 10.0 ( 0, -50 ) SvgC.blue
+                            , parallelogramSvg 60 60 10.0 ( 0, -50 ) SvgC.blue
+                            , parallelogramSvg 60 120 10.0 ( 0, -50 ) SvgC.blue
+                            , parallelogramSvg 60 180 10.0 ( 0, -50 ) SvgC.blue
+                            , parallelogramSvg 60 240 10.0 ( 0, -50 ) SvgC.blue
+                            , parallelogramSvg 60 300 10.0 ( 0, -50 ) SvgC.blue
                             ]
                         ]
                     )
@@ -193,6 +179,30 @@ view model =
             )
         ]
     }
+
+
+nullFilter : Svg msg
+nullFilter =
+    TypedSvg.filter
+        [ SvgA.id "myFilter" ]
+        [ SvgF.blend
+            [ SvgFA.in_ SvgT.InSourceGraphic
+            , SvgFA.mode SvgT.ModeNormal -- https://stackoverflow.com/questions/47451435/svg-prevent-transparent-gaps-between-adjacent-polygons
+            ]
+            []
+        ]
+
+
+clipPaths : Svg msg
+clipPaths =
+    TypedSvg.defs []
+        [ TypedSvg.clipPath [ SvgA.id <| "myClipPath30" ]
+            [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        , TypedSvg.clipPath [ SvgA.id <| "myClipPath45" ]
+            [ parallelogramSvg 45 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        , TypedSvg.clipPath [ SvgA.id <| "myClipPath60" ]
+            [ parallelogramSvg 60 0 10.0 ( 0, 0 ) SvgC.lightRed ]
+        ]
 
 
 type alias Radians =
@@ -242,8 +252,8 @@ parallelogramVerts angle length =
 -- Function to create an SVG element for the parallelogram
 
 
-parallelogramSvg : Float -> Float -> Float -> Point -> SvgC.Color -> String -> Svg msg
-parallelogramSvg angleDegrees shapeRotationDegrees length ( coordX, coordY ) color uid =
+parallelogramSvg : Float -> Float -> Float -> Point -> SvgC.Color -> Svg msg
+parallelogramSvg angleDegrees shapeRotationDegrees length ( coordX, coordY ) color =
     let
         angleRadians =
             degreesToRadians angleDegrees
