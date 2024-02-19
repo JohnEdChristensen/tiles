@@ -5270,130 +5270,14 @@ var $mdgriffith$elm_ui$Element$Background$color = function (clr) {
 			'background-color',
 			clr));
 };
-var $elm$virtual_dom$VirtualDom$nodeNS = F2(
-	function (namespace, tag) {
-		return A2(
-			_VirtualDom_nodeNS,
-			namespace,
-			_VirtualDom_noScript(tag));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
-var $elm_community$typed_svg$TypedSvg$defs = $elm_community$typed_svg$TypedSvg$Core$node('defs');
 var $mdgriffith$elm_ui$Internal$Model$Fill = function (a) {
 	return {$: 'Fill', a: a};
 };
 var $mdgriffith$elm_ui$Element$fill = $mdgriffith$elm_ui$Internal$Model$Fill(1);
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
-	switch (length.$) {
-		case 'Cm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'cm';
-		case 'Em':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'em';
-		case 'Ex':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'ex';
-		case 'In':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'in';
-		case 'Mm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'mm';
-		case 'Num':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x);
-		case 'Pc':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pc';
-		case 'Percent':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + '%';
-		case 'Pt':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pt';
-		case 'Px':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'px';
-		default:
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'rem';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'height',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm$core$Basics$negate = function (n) {
-	return -n;
-};
-var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
-	return {$: 'Percent', a: a};
-};
-var $elm_community$typed_svg$TypedSvg$Types$percent = $elm_community$typed_svg$TypedSvg$Types$Percent;
-var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
-	function (minX, minY, vWidth, vHeight) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$Core$attribute,
-			'viewBox',
-			A2(
-				$elm$core$String$join,
-				' ',
-				A2(
-					$elm$core$List$map,
-					$elm$core$String$fromFloat,
-					_List_fromArray(
-						[minX, minY, vWidth, vHeight]))));
-	});
-var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'width',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $author$project$Main$fullscreenSvgBox = F2(
-	function (width, height) {
-		var offsetY = (-height) / 2;
-		var offsetX = (-width) / 2;
-		return _List_fromArray(
-			[
-				$elm_community$typed_svg$TypedSvg$Attributes$width(
-				$elm_community$typed_svg$TypedSvg$Types$percent(100)),
-				$elm_community$typed_svg$TypedSvg$Attributes$height(
-				$elm_community$typed_svg$TypedSvg$Types$percent(100)),
-				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, offsetX, offsetY, width, height)
-			]);
-	});
-var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
 var $mdgriffith$elm_ui$Internal$Model$Height = function (a) {
 	return {$: 'Height', a: a};
 };
 var $mdgriffith$elm_ui$Element$height = $mdgriffith$elm_ui$Internal$Model$Height;
-var $mdgriffith$elm_ui$Internal$Model$Unstyled = function (a) {
-	return {$: 'Unstyled', a: a};
-};
-var $elm$core$Basics$always = F2(
-	function (a, _v0) {
-		return a;
-	});
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
-var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
 var $mdgriffith$elm_ui$Internal$Style$classes = {above: 'a', active: 'atv', alignBottom: 'ab', alignCenterX: 'cx', alignCenterY: 'cy', alignContainerBottom: 'acb', alignContainerCenterX: 'accx', alignContainerCenterY: 'accy', alignContainerRight: 'acr', alignLeft: 'al', alignRight: 'ar', alignTop: 'at', alignedHorizontally: 'ah', alignedVertically: 'av', any: 's', behind: 'bh', below: 'b', bold: 'w7', borderDashed: 'bd', borderDotted: 'bdt', borderNone: 'bn', borderSolid: 'bs', capturePointerEvents: 'cpe', clip: 'cp', clipX: 'cpx', clipY: 'cpy', column: 'c', container: 'ctr', contentBottom: 'cb', contentCenterX: 'ccx', contentCenterY: 'ccy', contentLeft: 'cl', contentRight: 'cr', contentTop: 'ct', cursorPointer: 'cptr', cursorText: 'ctxt', focus: 'fcs', focusedWithin: 'focus-within', fullSize: 'fs', grid: 'g', hasBehind: 'hbh', heightContent: 'hc', heightExact: 'he', heightFill: 'hf', heightFillPortion: 'hfp', hover: 'hv', imageContainer: 'ic', inFront: 'fr', inputLabel: 'lbl', inputMultiline: 'iml', inputMultilineFiller: 'imlf', inputMultilineParent: 'imlp', inputMultilineWrapper: 'implw', inputText: 'it', italic: 'i', link: 'lnk', nearby: 'nb', noTextSelection: 'notxt', onLeft: 'ol', onRight: 'or', opaque: 'oq', overflowHidden: 'oh', page: 'pg', paragraph: 'p', passPointerEvents: 'ppe', root: 'ui', row: 'r', scrollbars: 'sb', scrollbarsX: 'sbx', scrollbarsY: 'sby', seButton: 'sbt', single: 'e', sizeByCapital: 'cap', spaceEvenly: 'sev', strike: 'sk', text: 't', textCenter: 'tc', textExtraBold: 'w8', textExtraLight: 'w2', textHeavy: 'w9', textJustify: 'tj', textJustifyAll: 'tja', textLeft: 'tl', textLight: 'w3', textMedium: 'w5', textNormalWeight: 'w4', textRight: 'tr', textSemiBold: 'w6', textThin: 'w1', textUnitalicized: 'tun', transition: 'ts', transparent: 'clr', underline: 'u', widthContent: 'wc', widthExact: 'we', widthFill: 'wf', widthFillPortion: 'wfp', wrapped: 'wrp'};
 var $mdgriffith$elm_ui$Internal$Model$Attr = function (a) {
 	return {$: 'Attr', a: a};
@@ -5455,6 +5339,9 @@ var $mdgriffith$elm_ui$Internal$Model$Keyed = function (a) {
 var $mdgriffith$elm_ui$Internal$Model$NoStyleSheet = {$: 'NoStyleSheet'};
 var $mdgriffith$elm_ui$Internal$Model$Styled = function (a) {
 	return {$: 'Styled', a: a};
+};
+var $mdgriffith$elm_ui$Internal$Model$Unstyled = function (a) {
+	return {$: 'Unstyled', a: a};
 };
 var $mdgriffith$elm_ui$Internal$Model$addChildren = F2(
 	function (existing, nearbyChildren) {
@@ -5884,6 +5771,7 @@ var $elm$core$List$filterMap = F2(
 			_List_Nil,
 			xs);
 	});
+var $elm$core$String$fromFloat = _String_fromNumber;
 var $mdgriffith$elm_ui$Internal$Model$formatColor = function (_v0) {
 	var red = _v0.a;
 	var green = _v0.b;
@@ -8213,6 +8101,9 @@ var $elm$core$Basics$min = F2(
 	function (x, y) {
 		return (_Utils_cmp(x, y) < 0) ? x : y;
 	});
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
 var $mdgriffith$elm_ui$Internal$Model$renderProps = F3(
 	function (force, _v0, existing) {
 		var key = _v0.a;
@@ -9769,6 +9660,13 @@ var $mdgriffith$elm_ui$Internal$Model$alignYName = function (align) {
 			return $mdgriffith$elm_ui$Internal$Style$classes.alignedVertically + (' ' + $mdgriffith$elm_ui$Internal$Style$classes.alignCenterY);
 	}
 };
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
 var $mdgriffith$elm_ui$Internal$Model$FullTransform = F4(
 	function (a, b, c, d) {
 		return {$: 'FullTransform', a: a, b: b, c: c, d: d};
@@ -11243,6 +11141,112 @@ var $mdgriffith$elm_ui$Element$layoutWith = F3(
 	});
 var $mdgriffith$elm_ui$Element$layout = $mdgriffith$elm_ui$Element$layoutWith(
 	{options: _List_Nil});
+var $mdgriffith$elm_ui$Element$rgb255 = F3(
+	function (red, green, blue) {
+		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, red / 255, green / 255, blue / 255, 1);
+	});
+var $elm$virtual_dom$VirtualDom$nodeNS = F2(
+	function (namespace, tag) {
+		return A2(
+			_VirtualDom_nodeNS,
+			namespace,
+			_VirtualDom_noScript(tag));
+	});
+var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
+var $elm_community$typed_svg$TypedSvg$defs = $elm_community$typed_svg$TypedSvg$Core$node('defs');
+var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
+	switch (length.$) {
+		case 'Cm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'cm';
+		case 'Em':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'em';
+		case 'Ex':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'ex';
+		case 'In':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'in';
+		case 'Mm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'mm';
+		case 'Num':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x);
+		case 'Pc':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pc';
+		case 'Percent':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + '%';
+		case 'Pt':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pt';
+		case 'Px':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'px';
+		default:
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'rem';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'height',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Types$Percent = function (a) {
+	return {$: 'Percent', a: a};
+};
+var $elm_community$typed_svg$TypedSvg$Types$percent = $elm_community$typed_svg$TypedSvg$Types$Percent;
+var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
+	function (minX, minY, vWidth, vHeight) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$Core$attribute,
+			'viewBox',
+			A2(
+				$elm$core$String$join,
+				' ',
+				A2(
+					$elm$core$List$map,
+					$elm$core$String$fromFloat,
+					_List_fromArray(
+						[minX, minY, vWidth, vHeight]))));
+	});
+var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'width',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $author$project$Main$fullscreenSvgBox = F2(
+	function (width, height) {
+		var offsetY = (-height) / 2;
+		var offsetX = (-width) / 2;
+		return _List_fromArray(
+			[
+				$elm_community$typed_svg$TypedSvg$Attributes$width(
+				$elm_community$typed_svg$TypedSvg$Types$percent(100)),
+				$elm_community$typed_svg$TypedSvg$Attributes$height(
+				$elm_community$typed_svg$TypedSvg$Types$percent(100)),
+				A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, offsetX, offsetY, width, height)
+			]);
+	});
+var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $mdgriffith$elm_ui$Internal$Model$unstyled = A2($elm$core$Basics$composeL, $mdgriffith$elm_ui$Internal$Model$Unstyled, $elm$core$Basics$always);
+var $mdgriffith$elm_ui$Element$html = $mdgriffith$elm_ui$Internal$Model$unstyled;
 var $elm_community$typed_svg$TypedSvg$Types$InSourceGraphic = {$: 'InSourceGraphic'};
 var $elm_community$typed_svg$TypedSvg$Types$ModeNormal = {$: 'ModeNormal'};
 var $elm_community$typed_svg$TypedSvg$Filters$blend = $elm_community$typed_svg$TypedSvg$Core$node('feBlend');
@@ -11312,17 +11316,49 @@ var $elm_community$typed_svg$TypedSvg$Attributes$style = function (value) {
 	return A2($elm_community$typed_svg$TypedSvg$Core$attribute, 'style', value);
 };
 var $author$project$Main$nullFilterStyle = $elm_community$typed_svg$TypedSvg$Attributes$style('filter: url(#nullFilter)');
-var $mdgriffith$elm_ui$Element$rgb255 = F3(
-	function (red, green, blue) {
-		return A4($mdgriffith$elm_ui$Internal$Model$Rgba, red / 255, green / 255, blue / 255, 1);
-	});
 var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm_community$typed_svg$TypedSvg$clipPath = $elm_community$typed_svg$TypedSvg$Core$node('clipPath');
 var $avh4$elm_color$Color$RgbaSpace = F4(
 	function (a, b, c, d) {
 		return {$: 'RgbaSpace', a: a, b: b, c: c, d: d};
 	});
-var $avh4$elm_color$Color$lightRed = A4($avh4$elm_color$Color$RgbaSpace, 239 / 255, 41 / 255, 41 / 255, 1.0);
+var $avh4$elm_color$Color$red = A4($avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
+var $author$project$Main$tile30 = {angleDegrees: 30.0, color: $avh4$elm_color$Color$red, length: 10};
+var $author$project$Main$baseTile30 = {
+	location: _Utils_Tuple2(0, 0),
+	rotation: 0,
+	tileType: $author$project$Main$tile30
+};
+var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
+var $author$project$Main$tile45 = {angleDegrees: 45.0, color: $avh4$elm_color$Color$yellow, length: 10};
+var $author$project$Main$baseTile45 = {
+	location: _Utils_Tuple2(0, 0),
+	rotation: 0,
+	tileType: $author$project$Main$tile45
+};
+var $avh4$elm_color$Color$blue = A4($avh4$elm_color$Color$RgbaSpace, 52 / 255, 101 / 255, 164 / 255, 1.0);
+var $author$project$Main$tile60 = {angleDegrees: 60.0, color: $avh4$elm_color$Color$blue, length: 10};
+var $author$project$Main$baseTile60 = {
+	location: _Utils_Tuple2(0, 0),
+	rotation: 0,
+	tileType: $author$project$Main$tile60
+};
+var $author$project$Main$generateAngles = F2(
+	function (_v0, step) {
+		var start = _v0.a;
+		var stop = _v0.b;
+		return A2(
+			$elm$core$List$map,
+			function (n) {
+				return n * step;
+			},
+			A2($elm$core$List$range, start, (stop / step) | 0));
+	});
+var $author$project$Main$rotateAboutSelf = F2(
+	function (tile, rotationDegrees) {
+		return _Utils_update(
+			tile,
+			{rotation: rotationDegrees});
+	});
 var $elm_community$typed_svg$TypedSvg$Types$Paint = function (a) {
 	return {$: 'Paint', a: a};
 };
@@ -11335,12 +11371,8 @@ var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
 		return {$: 'Translate', a: a, b: b};
 	});
 var $avh4$elm_color$Color$black = A4($avh4$elm_color$Color$RgbaSpace, 0 / 255, 0 / 255, 0 / 255, 1.0);
-var $author$project$Main$clipPath = function (angleDegrees) {
-	return 'myClipPath' + $elm$core$String$fromFloat(angleDegrees);
-};
-var $elm$core$Basics$pi = _Basics_pi;
-var $author$project$Main$degreesToRadians = function (degrees) {
-	return degrees * ($elm$core$Basics$pi / 180);
+var $author$project$Main$clipPathId = function (angleDegrees) {
+	return 'TileClipPath' + $elm$core$String$fromFloat(angleDegrees);
 };
 var $avh4$elm_color$Color$toCssString = function (_v0) {
 	var r = _v0.a;
@@ -11407,17 +11439,27 @@ var $author$project$Main$addPoints = F2(
 		return _Utils_Tuple2(x1 + x2, y1 + y2);
 	});
 var $elm$core$Basics$cos = _Basics_cos;
+var $elm$core$Basics$pi = _Basics_pi;
+var $elm$core$Basics$degrees = function (angleInDegrees) {
+	return (angleInDegrees * $elm$core$Basics$pi) / 180;
+};
 var $elm$core$Basics$sin = _Basics_sin;
+var $author$project$Main$rotatePoint = F2(
+	function (_v0, angle) {
+		var x = _v0.a;
+		var y = _v0.b;
+		var angleR = $elm$core$Basics$degrees(angle);
+		return _Utils_Tuple2(
+			(x * $elm$core$Basics$cos(angleR)) - (y * $elm$core$Basics$sin(angleR)),
+			(x * $elm$core$Basics$sin(angleR)) + (y * $elm$core$Basics$cos(angleR)));
+	});
 var $author$project$Main$parallelogramVerts = F2(
 	function (angle, length) {
-		var c = _Utils_Tuple2(
-			length * $elm$core$Basics$cos(angle),
-			length * $elm$core$Basics$sin(angle));
 		var b = _Utils_Tuple2(length, 0);
+		var c = A2($author$project$Main$rotatePoint, b, -angle);
 		var d = A2($author$project$Main$addPoints, b, c);
 		var a = _Utils_Tuple2(0, 0);
-		return _List_fromArray(
-			[a, b, d, c]);
+		return {a: a, b: b, c: c, d: d};
 	});
 var $elm_community$typed_svg$TypedSvg$Attributes$points = function (pts) {
 	var pointToString = function (_v0) {
@@ -11438,6 +11480,14 @@ var $elm_community$typed_svg$TypedSvg$Types$Pt = function (a) {
 	return {$: 'Pt', a: a};
 };
 var $elm_community$typed_svg$TypedSvg$Types$pt = $elm_community$typed_svg$TypedSvg$Types$Pt;
+var $author$project$Main$quadToList = function (_v0) {
+	var a = _v0.a;
+	var b = _v0.b;
+	var c = _v0.c;
+	var d = _v0.d;
+	return _List_fromArray(
+		[a, b, d, c]);
+};
 var $elm_community$typed_svg$TypedSvg$Attributes$stroke = A2(
 	$elm$core$Basics$composeL,
 	$elm_community$typed_svg$TypedSvg$Core$attribute('stroke'),
@@ -11526,34 +11576,76 @@ var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transform
 			' ',
 			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
 };
-var $author$project$Main$parallelogramSvg = F5(
-	function (angleDegrees, shapeRotationDegrees, length, _v0, color) {
-		var coordX = _v0.a;
-		var coordY = _v0.b;
-		var angleRadians = $author$project$Main$degreesToRadians(angleDegrees);
-		var quad = A2($author$project$Main$parallelogramVerts, angleRadians, length);
-		return A2(
-			$elm_community$typed_svg$TypedSvg$polygon,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$points(quad),
-					$elm_community$typed_svg$TypedSvg$Attributes$fill(
-					$elm_community$typed_svg$TypedSvg$Types$Paint(color)),
-					$elm_community$typed_svg$TypedSvg$Attributes$stroke(
-					$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$black)),
-					$elm_community$typed_svg$TypedSvg$Attributes$strokeWidth(
-					$elm_community$typed_svg$TypedSvg$Types$pt(0.2)),
-					$elm_community$typed_svg$TypedSvg$Attributes$style(
-					'paint-order:fill;' + (' clip-path: url(#' + ($author$project$Main$clipPath(angleDegrees) + ')'))),
-					$elm_community$typed_svg$TypedSvg$Attributes$transform(
-					_List_fromArray(
-						[
-							A2($elm_community$typed_svg$TypedSvg$Types$Translate, coordX, coordY),
-							A3($elm_community$typed_svg$TypedSvg$Types$Rotate, shapeRotationDegrees, 0, 0)
-						]))
-				]),
-			_List_Nil);
-	});
+var $author$project$Main$tileToSvg = function (_v0) {
+	var tileType = _v0.tileType;
+	var location = _v0.location;
+	var rotation = _v0.rotation;
+	var quad = A2($author$project$Main$parallelogramVerts, tileType.angleDegrees, tileType.length);
+	var coordY = location.b;
+	var coordX = location.a;
+	return A2(
+		$elm_community$typed_svg$TypedSvg$polygon,
+		_List_fromArray(
+			[
+				$elm_community$typed_svg$TypedSvg$Attributes$points(
+				$author$project$Main$quadToList(quad)),
+				$elm_community$typed_svg$TypedSvg$Attributes$fill(
+				$elm_community$typed_svg$TypedSvg$Types$Paint(tileType.color)),
+				$elm_community$typed_svg$TypedSvg$Attributes$stroke(
+				$elm_community$typed_svg$TypedSvg$Types$Paint($avh4$elm_color$Color$black)),
+				$elm_community$typed_svg$TypedSvg$Attributes$strokeWidth(
+				$elm_community$typed_svg$TypedSvg$Types$pt(0.2)),
+				$elm_community$typed_svg$TypedSvg$Attributes$style(
+				'paint-order:fill;' + (' clip-path: url(#' + ($author$project$Main$clipPathId(tileType.angleDegrees) + ')'))),
+				$elm_community$typed_svg$TypedSvg$Attributes$transform(
+				_List_fromArray(
+					[
+						A2($elm_community$typed_svg$TypedSvg$Types$Translate, coordX, coordY),
+						A3($elm_community$typed_svg$TypedSvg$Types$Rotate, rotation, 0, 0)
+					]))
+			]),
+		_List_Nil);
+};
+var $author$project$Main$tile360Svg = function () {
+	var cluster60 = _Utils_update(
+		$author$project$Main$baseTile60,
+		{
+			location: _Utils_Tuple2(40, 0)
+		});
+	var cluster45 = _Utils_update(
+		$author$project$Main$baseTile45,
+		{
+			location: _Utils_Tuple2(-40, 0)
+		});
+	var cluster30 = $author$project$Main$baseTile30;
+	return A2(
+		$elm$core$List$map,
+		$author$project$Main$tileToSvg,
+		_Utils_ap(
+			A2(
+				$elm$core$List$map,
+				$author$project$Main$rotateAboutSelf(cluster30),
+				A2(
+					$author$project$Main$generateAngles,
+					_Utils_Tuple2(0, 360),
+					30)),
+			_Utils_ap(
+				A2(
+					$elm$core$List$map,
+					$author$project$Main$rotateAboutSelf(cluster45),
+					A2(
+						$author$project$Main$generateAngles,
+						_Utils_Tuple2(0, 360),
+						45)),
+				A2(
+					$elm$core$List$map,
+					$author$project$Main$rotateAboutSelf(cluster60),
+					A2(
+						$author$project$Main$generateAngles,
+						_Utils_Tuple2(0, 360),
+						60)))));
+}();
+var $elm_community$typed_svg$TypedSvg$clipPath = $elm_community$typed_svg$TypedSvg$Core$node('clipPath');
 var $author$project$Main$tileClipPaths = A2(
 	$elm_community$typed_svg$TypedSvg$defs,
 	_List_Nil,
@@ -11563,246 +11655,53 @@ var $author$project$Main$tileClipPaths = A2(
 			$elm_community$typed_svg$TypedSvg$clipPath,
 			_List_fromArray(
 				[
-					$elm_community$typed_svg$TypedSvg$Attributes$id('myClipPath30')
+					$elm_community$typed_svg$TypedSvg$Attributes$id(
+					$author$project$Main$clipPathId(30))
 				]),
 			_List_fromArray(
 				[
-					A5(
-					$author$project$Main$parallelogramSvg,
-					30,
-					0,
-					10.0,
-					_Utils_Tuple2(0, 0),
-					$avh4$elm_color$Color$lightRed)
+					$author$project$Main$tileToSvg($author$project$Main$baseTile30)
 				])),
 			A2(
 			$elm_community$typed_svg$TypedSvg$clipPath,
 			_List_fromArray(
 				[
-					$elm_community$typed_svg$TypedSvg$Attributes$id('myClipPath45')
+					$elm_community$typed_svg$TypedSvg$Attributes$id(
+					$author$project$Main$clipPathId(45))
 				]),
 			_List_fromArray(
 				[
-					A5(
-					$author$project$Main$parallelogramSvg,
-					45,
-					0,
-					10.0,
-					_Utils_Tuple2(0, 0),
-					$avh4$elm_color$Color$lightRed)
+					$author$project$Main$tileToSvg($author$project$Main$baseTile45)
 				])),
 			A2(
 			$elm_community$typed_svg$TypedSvg$clipPath,
 			_List_fromArray(
 				[
-					$elm_community$typed_svg$TypedSvg$Attributes$id('myClipPath60')
+					$elm_community$typed_svg$TypedSvg$Attributes$id(
+					$author$project$Main$clipPathId(60))
 				]),
 			_List_fromArray(
 				[
-					A5(
-					$author$project$Main$parallelogramSvg,
-					60,
-					0,
-					10.0,
-					_Utils_Tuple2(0, 0),
-					$avh4$elm_color$Color$lightRed)
+					$author$project$Main$tileToSvg($author$project$Main$baseTile60)
 				]))
 		]));
-var $avh4$elm_color$Color$blue = A4($avh4$elm_color$Color$RgbaSpace, 52 / 255, 101 / 255, 164 / 255, 1.0);
-var $avh4$elm_color$Color$red = A4($avh4$elm_color$Color$RgbaSpace, 204 / 255, 0 / 255, 0 / 255, 1.0);
-var $avh4$elm_color$Color$yellow = A4($avh4$elm_color$Color$RgbaSpace, 237 / 255, 212 / 255, 0 / 255, 1.0);
-var $author$project$Main$tilesSvg = _List_fromArray(
-	[
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		0,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		30,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		60,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		90,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		120,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		150,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		180,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		210,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		240,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		270,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		300,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		30,
-		330,
-		10.0,
-		_Utils_Tuple2(0, 0),
-		$avh4$elm_color$Color$red),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		(-60) / 2,
-		10.0,
-		_Utils_Tuple2(10, 0),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		0,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		45,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		90,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		135,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		180,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		225,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		270,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		45,
-		315,
-		10.0,
-		_Utils_Tuple2(0, 50),
-		$avh4$elm_color$Color$yellow),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		0,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		60,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		120,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		180,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		240,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue),
-		A5(
-		$author$project$Main$parallelogramSvg,
-		60,
-		300,
-		10.0,
-		_Utils_Tuple2(0, -50),
-		$avh4$elm_color$Color$blue)
-	]);
+var $author$project$Main$tileCanvasEl = $mdgriffith$elm_ui$Element$html(
+	A2(
+		$elm_community$typed_svg$TypedSvg$svg,
+		A2($author$project$Main$fullscreenSvgBox, 50, 150),
+		_List_fromArray(
+			[
+				A2(
+				$elm_community$typed_svg$TypedSvg$defs,
+				_List_Nil,
+				_List_fromArray(
+					[$author$project$Main$nullFilter, $author$project$Main$tileClipPaths])),
+				A2(
+				$elm_community$typed_svg$TypedSvg$g,
+				_List_fromArray(
+					[$author$project$Main$nullFilterStyle]),
+				$author$project$Main$tile360Svg)
+			])));
 var $mdgriffith$elm_ui$Internal$Model$Width = function (a) {
 	return {$: 'Width', a: a};
 };
@@ -11820,23 +11719,7 @@ var $author$project$Main$view = function (_v0) {
 						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
 						$mdgriffith$elm_ui$Element$Background$color(backgroundColor)
 					]),
-				$mdgriffith$elm_ui$Element$html(
-					A2(
-						$elm_community$typed_svg$TypedSvg$svg,
-						A2($author$project$Main$fullscreenSvgBox, 50, 150),
-						_List_fromArray(
-							[
-								A2(
-								$elm_community$typed_svg$TypedSvg$defs,
-								_List_Nil,
-								_List_fromArray(
-									[$author$project$Main$nullFilter, $author$project$Main$tileClipPaths])),
-								A2(
-								$elm_community$typed_svg$TypedSvg$g,
-								_List_fromArray(
-									[$author$project$Main$nullFilterStyle]),
-								$author$project$Main$tilesSvg)
-							]))))
+				$author$project$Main$tileCanvasEl)
 			]),
 		title: 'Tiles'
 	};
