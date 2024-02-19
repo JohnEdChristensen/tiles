@@ -109,82 +109,100 @@ subscriptions _ =
 
 
 -- VIEW
+-- -- #e67e80
+-- red =
+--     Element.rgb255 230 126 128
 
 
 view : Model -> Browser.Document Msg
-view model =
+view _ =
     let
         -- #fdf6e3
         backgroundColor =
             Element.rgb255 253 246 227
-
-        -- #e67e80
-        red =
-            Element.rgb255 230 126 128
     in
     { title = "Tiles"
     , body =
         [ Element.layout
             [ Element.width Element.fill
             , Element.height Element.fill
+            , Background.color backgroundColor
             ]
-            (el [ Element.width fill, Element.height fill, Background.color backgroundColor ]
-                (html
-                    (svg
-                        [ SvgA.width (SvgT.percent 100) --https://ellie-app.com/cp8m289xjgQa1
-                        , SvgA.height (SvgT.percent 100)
-                        , SvgA.viewBox -100 -100 200 200
-
-                        --, SvgA.shapeRendering SvgT.RenderCrispEdges
+          <|
+            html <|
+                svg
+                    (fullscreenSvgBox 50 150)
+                    [ TypedSvg.defs []
+                        [ nullFilter
+                        , tileClipPaths
                         ]
-                        [ TypedSvg.defs
-                            []
-                            [ nullFilter
-                            , clipPaths
-                            ]
-                        , TypedSvg.g
-                            [ SvgA.style <| "filter: url(#myFilter)"
-                            ]
-                            [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 30 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 60 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 90 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 120 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 150 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 180 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 210 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 240 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 270 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 300 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 30 330 10.0 ( 0, 0 ) SvgC.red
-                            , parallelogramSvg 60 (-60 / 2) 10.0 ( 10, 0 ) SvgC.yellow
-                            , parallelogramSvg 45 0 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 45 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 90 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 135 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 180 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 225 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 270 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 45 315 10.0 ( 0, 50 ) SvgC.yellow
-                            , parallelogramSvg 60 0 10.0 ( 0, -50 ) SvgC.blue
-                            , parallelogramSvg 60 60 10.0 ( 0, -50 ) SvgC.blue
-                            , parallelogramSvg 60 120 10.0 ( 0, -50 ) SvgC.blue
-                            , parallelogramSvg 60 180 10.0 ( 0, -50 ) SvgC.blue
-                            , parallelogramSvg 60 240 10.0 ( 0, -50 ) SvgC.blue
-                            , parallelogramSvg 60 300 10.0 ( 0, -50 ) SvgC.blue
-                            ]
-                        ]
-                    )
-                )
-            )
+                    , TypedSvg.g
+                        [ nullFilterStyle ]
+                        tilesSvg
+                    ]
         ]
     }
+
+
+tilesSvg : List (Svg msg)
+tilesSvg =
+    [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 30 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 60 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 90 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 120 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 150 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 180 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 210 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 240 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 270 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 300 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 30 330 10.0 ( 0, 0 ) SvgC.red
+    , parallelogramSvg 60 (-60 / 2) 10.0 ( 10, 0 ) SvgC.yellow
+    , parallelogramSvg 45 0 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 45 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 90 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 135 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 180 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 225 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 270 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 45 315 10.0 ( 0, 50 ) SvgC.yellow
+    , parallelogramSvg 60 0 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 60 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 120 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 180 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 240 10.0 ( 0, -50 ) SvgC.blue
+    , parallelogramSvg 60 300 10.0 ( 0, -50 ) SvgC.blue
+    ]
+
+
+
+-- SVG Configuration
+--
+-- The parent SVG takes up the whole screen, and uses viewBox 
+-- to specify the coordiantes
+-- https://ellie-app.com/cp8m289xjgQa1
+
+
+fullscreenSvgBox : Float -> Float -> List (TypedSvg.Core.Attribute Msg)
+fullscreenSvgBox width height =
+    let
+        offsetX =
+            -width / 2
+
+        offsetY =
+            -height / 2
+    in
+    [ SvgA.width (SvgT.percent 100)
+    , SvgA.height (SvgT.percent 100)
+    , SvgA.viewBox offsetX offsetY width height
+    ]
 
 
 nullFilter : Svg msg
 nullFilter =
     TypedSvg.filter
-        [ SvgA.id "myFilter" ]
+        [ SvgA.id "nullFilter" ]
         [ SvgF.blend
             [ SvgFA.in_ SvgT.InSourceGraphic
             , SvgFA.mode SvgT.ModeNormal -- https://stackoverflow.com/questions/47451435/svg-prevent-transparent-gaps-between-adjacent-polygons
@@ -193,8 +211,13 @@ nullFilter =
         ]
 
 
-clipPaths : Svg msg
-clipPaths =
+nullFilterStyle : TypedSvg.Core.Attribute msg
+nullFilterStyle =
+    SvgA.style "filter: url(#nullFilter)"
+
+
+tileClipPaths : Svg msg
+tileClipPaths =
     TypedSvg.defs []
         [ TypedSvg.clipPath [ SvgA.id <| "myClipPath30" ]
             [ parallelogramSvg 30 0 10.0 ( 0, 0 ) SvgC.lightRed ]
