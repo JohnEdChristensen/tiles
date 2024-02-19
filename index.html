@@ -11342,23 +11342,10 @@ var $author$project$Main$baseTile60 = {
 	rotation: 0,
 	tileType: $author$project$Main$tile60
 };
-var $author$project$Main$generateAngles = F2(
-	function (_v0, step) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		return A2(
-			$elm$core$List$map,
-			function (n) {
-				return n * step;
-			},
-			A2($elm$core$List$range, start, (stop / step) | 0));
-	});
-var $author$project$Main$rotateAboutSelf = F2(
-	function (tile, rotationDegrees) {
-		return _Utils_update(
-			tile,
-			{rotation: rotationDegrees});
-	});
+var $elm_community$typed_svg$TypedSvg$clipPath = $elm_community$typed_svg$TypedSvg$Core$node('clipPath');
+var $author$project$Main$clipPathId = function (angleDegrees) {
+	return 'TileClipPath' + $elm$core$String$fromFloat(angleDegrees);
+};
 var $elm_community$typed_svg$TypedSvg$Types$Paint = function (a) {
 	return {$: 'Paint', a: a};
 };
@@ -11371,9 +11358,6 @@ var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
 		return {$: 'Translate', a: a, b: b};
 	});
 var $avh4$elm_color$Color$black = A4($avh4$elm_color$Color$RgbaSpace, 0 / 255, 0 / 255, 0 / 255, 1.0);
-var $author$project$Main$clipPathId = function (angleDegrees) {
-	return 'TileClipPath' + $elm$core$String$fromFloat(angleDegrees);
-};
 var $avh4$elm_color$Color$toCssString = function (_v0) {
 	var r = _v0.a;
 	var g = _v0.b;
@@ -11606,46 +11590,6 @@ var $author$project$Main$tileToSvg = function (_v0) {
 			]),
 		_List_Nil);
 };
-var $author$project$Main$tile360Svg = function () {
-	var cluster60 = _Utils_update(
-		$author$project$Main$baseTile60,
-		{
-			location: _Utils_Tuple2(40, 0)
-		});
-	var cluster45 = _Utils_update(
-		$author$project$Main$baseTile45,
-		{
-			location: _Utils_Tuple2(-40, 0)
-		});
-	var cluster30 = $author$project$Main$baseTile30;
-	return A2(
-		$elm$core$List$map,
-		$author$project$Main$tileToSvg,
-		_Utils_ap(
-			A2(
-				$elm$core$List$map,
-				$author$project$Main$rotateAboutSelf(cluster30),
-				A2(
-					$author$project$Main$generateAngles,
-					_Utils_Tuple2(0, 360),
-					30)),
-			_Utils_ap(
-				A2(
-					$elm$core$List$map,
-					$author$project$Main$rotateAboutSelf(cluster45),
-					A2(
-						$author$project$Main$generateAngles,
-						_Utils_Tuple2(0, 360),
-						45)),
-				A2(
-					$elm$core$List$map,
-					$author$project$Main$rotateAboutSelf(cluster60),
-					A2(
-						$author$project$Main$generateAngles,
-						_Utils_Tuple2(0, 360),
-						60)))));
-}();
-var $elm_community$typed_svg$TypedSvg$clipPath = $elm_community$typed_svg$TypedSvg$Core$node('clipPath');
 var $author$project$Main$tileClipPaths = A2(
 	$elm_community$typed_svg$TypedSvg$defs,
 	_List_Nil,
@@ -11685,10 +11629,97 @@ var $author$project$Main$tileClipPaths = A2(
 					$author$project$Main$tileToSvg($author$project$Main$baseTile60)
 				]))
 		]));
+var $author$project$Main$generateAngles = F2(
+	function (_v0, step) {
+		var start = _v0.a;
+		var stop = _v0.b;
+		return A2(
+			$elm$core$List$map,
+			function (n) {
+				return n * step;
+			},
+			A2($elm$core$List$range, start, (stop / step) | 0));
+	});
+var $author$project$Main$rotateAboutOrigin = F2(
+	function (tile, angle) {
+		return _Utils_update(
+			tile,
+			{
+				location: A2($author$project$Main$rotatePoint, tile.location, angle),
+				rotation: tile.rotation + angle
+			});
+	});
+var $author$project$Main$copyAroundOrigin = F2(
+	function (stepSize, tile) {
+		var angles = A2(
+			$author$project$Main$generateAngles,
+			_Utils_Tuple2(0, 360),
+			$elm$core$Basics$round(stepSize));
+		return A2(
+			$elm$core$List$map,
+			$author$project$Main$rotateAboutOrigin(tile),
+			angles);
+	});
+var $author$project$Main$tileToQuad = function (_v0) {
+	var tileType = _v0.tileType;
+	var location = _v0.location;
+	var rotation = _v0.rotation;
+	var quad = A2($author$project$Main$parallelogramVerts, tileType.angleDegrees, tileType.length);
+	var dp = A2(
+		$author$project$Main$addPoints,
+		location,
+		A2($author$project$Main$rotatePoint, quad.d, rotation));
+	var cp = A2(
+		$author$project$Main$addPoints,
+		location,
+		A2($author$project$Main$rotatePoint, quad.c, rotation));
+	var bp = A2(
+		$author$project$Main$addPoints,
+		location,
+		A2($author$project$Main$rotatePoint, quad.b, rotation));
+	var ap = A2(
+		$author$project$Main$addPoints,
+		location,
+		A2($author$project$Main$rotatePoint, quad.a, rotation));
+	return {a: ap, b: bp, c: cp, d: dp};
+};
+var $author$project$Main$tilesFun = function () {
+	var r1 = $author$project$Main$baseTile30;
+	var r1Quad = $author$project$Main$tileToQuad(r1);
+	var b1 = _Utils_update(
+		$author$project$Main$baseTile60,
+		{location: r1Quad.b, rotation: 30});
+	var b1Quad = $author$project$Main$tileToQuad(b1);
+	var r2 = _Utils_update(
+		$author$project$Main$baseTile30,
+		{location: b1Quad.d, rotation: 15});
+	var y1 = _Utils_update(
+		$author$project$Main$baseTile45,
+		{location: b1Quad.b, rotation: 15});
+	var y1Quad = $author$project$Main$tileToQuad(y1);
+	var y3 = _Utils_update(
+		$author$project$Main$baseTile45,
+		{location: y1Quad.b, rotation: 15});
+	var y2 = _Utils_update(
+		y1,
+		{rotation: 60});
+	var y2Quad = $author$project$Main$tileToQuad(y1);
+	var y4 = _Utils_update(
+		$author$project$Main$baseTile45,
+		{location: y2Quad.b, rotation: 60});
+	return A2(
+		$elm$core$List$map,
+		$author$project$Main$tileToSvg,
+		A2(
+			$elm$core$List$concatMap,
+			$author$project$Main$copyAroundOrigin(30),
+			_List_fromArray(
+				[r1, b1, y1, y2, r2, y3, y4])));
+}();
 var $author$project$Main$tileCanvasEl = $mdgriffith$elm_ui$Element$html(
 	A2(
 		$elm_community$typed_svg$TypedSvg$svg,
-		A2($author$project$Main$fullscreenSvgBox, 50, 150),
+		A2($author$project$Main$fullscreenSvgBox, 100, 100),
 		_List_fromArray(
 			[
 				A2(
@@ -11700,7 +11731,7 @@ var $author$project$Main$tileCanvasEl = $mdgriffith$elm_ui$Element$html(
 				$elm_community$typed_svg$TypedSvg$g,
 				_List_fromArray(
 					[$author$project$Main$nullFilterStyle]),
-				$author$project$Main$tile360Svg)
+				$author$project$Main$tilesFun)
 			])));
 var $mdgriffith$elm_ui$Internal$Model$Width = function (a) {
 	return {$: 'Width', a: a};

@@ -163,7 +163,7 @@ tileCanvasEl : Element Msg
 tileCanvasEl =
     html <|
         svg
-            (fullscreenSvgBox 50 150)
+            (fullscreenSvgBox 100 100)
             [ TypedSvg.defs []
                 [ nullFilter
                 , tileClipPaths
@@ -171,7 +171,7 @@ tileCanvasEl =
             , TypedSvg.g
                 [ nullFilterStyle
                 ]
-               tile360Svg
+               tilesFun
             ]
 
 
